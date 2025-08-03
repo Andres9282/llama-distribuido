@@ -79,7 +79,7 @@ debug_rank*.txt
 ```
 Contienen las capas del modelo asignadas a ese nodo. Puedes analizarlas manualmente o transferirlas a la orquestadora con:
 ```bash
-scp usuario@nodo:/ruta/debug_rank*.txt .
+scp usuario@nodo:/ruta/debug_rank*.txt
 ```
 
 ### 🧼 Limpieza
