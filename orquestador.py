@@ -1,17 +1,32 @@
 # orquestador.py
+import os
+import time
 
-import subprocess
-
-# ✅ Prompt fijo por ahora (más adelante vendrá del cliente)
+PROMPT_FILE = "prompt.txt"
 prompt = "Explica brevemente qué es la inteligencia artificial."
 
-print("🧠 ORQUESTADOR | Preparando ejecución distribuida...")
-print(f"➡️  Prompt: {prompt}\n")
+print("🧠 ORQUESTADOR | Enviando prompt al sistema distribuido...")
+print(f"➡️  Prompt: {prompt}")
 
-# 🚀 Lanza el modelo distribuido (solo en rank 0; los demás deben ejecutarse manualmente o vía SSH)
-# Este archivo debe estar ya sincronizado en todas las máquinas
+# Escribir el prompt al archivo que rank 0 leerá
+with open(PROMPT_FILE, "w", encoding="utf-8") as f:
+    f.write(prompt)
 
-try:
-    subprocess.run(["accelerate", "launch", "worker_distribuido.py"], check=True)
-except subprocess.CalledProcessError as e:
-    print(f"❌ Error al ejecutar modelo distribuido: {e}")
+print("📤 Prompt guardado. Puedes lanzar ahora el modelo distribuido con:")
+print("    accelerate launch worker_distribuido.py")
+print("⏳ Esperando respuesta...")
+
+# Esperar a que rank 0 escriba la respuesta
+RESPONSE_FILE = "respuesta.txt"
+while not os.path.exists(RESPONSE_FILE):
+    time.sleep(1)
+
+# Leer y mostrar la respuesta generada
+with open(RESPONSE_FILE, "r", encoding="utf-8") as f:
+    respuesta = f.read()
+
+print("\n🧠 Respuesta generada por el modelo:\n")
+print(respuesta)
+
+# Limpieza opcional
+os.remove(RESPONSE_FILE)
