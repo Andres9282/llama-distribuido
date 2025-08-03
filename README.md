@@ -38,21 +38,22 @@ pip install torch transformers accelerate
 ```bash
 accelerate config
 ```
-Compute environment:               This machine
-Machine type:                      multi-GPU
-How many machines:                 Cantidad de workers
-Machine rank:                      De 0 hasta que cada maquina tenga su rank
-Main process IP:                   IP de Tailscale de la maquina con rank 0
-Port:                              29500
-Are machines on same local network? no
-Rendezvous backend:                static
-Use DeepSpeed?                     no
-Use FSDP?                          no
-Use Megatron-LM?                   no
-How many GPUs on this machine:     1
-What GPU(s) (by id):               0
-Enable NUMA efficiency:            no
-Use mixed precision:               fp16
+
+#### Compute environment:               This machine
+#### Machine type:                      multi-GPU
+#### How many machines:                 Cantidad de workers
+#### Machine rank:                      De 0 hasta que cada maquina tenga su rank
+#### Main process IP:                   IP de Tailscale de la maquina con rank 0
+#### Port:                              29500
+#### Are machines on same local network? no
+#### Rendezvous backend:                static
+#### Use DeepSpeed?                     no
+#### Use FSDP?                          no
+#### Use Megatron-LM?                   no
+#### How many GPUs on this machine:     1
+#### What GPU(s) (by id):               0
+#### Enable NUMA efficiency:            no
+#### Use mixed precision:               fp16
 
 ---
 
